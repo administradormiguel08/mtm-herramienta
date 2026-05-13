@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<!-- saved from url=(0048)file:///C:/Users/Usuario/Downloads/index_10.html -->
+<html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Radiografía de Rentabilidad — MTM Consulting</title>
+  <link href="./Radiografía de Rentabilidad — MTM Consulting_files/css2" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #1B2A4A;
+      --teal: #2A9D8F;
+      --coral: #993D1E;
+      --amber: #B87A10;
+      --gray-bg: #F5F5F5;
+      --gray-text: #444444;
+      --gray-light: #AAAAAA;
+      --white: #FFFFFF;
+      --teal-light: #E0F5F3;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background: var(--gray-bg);
+      color: var(--gray-text);
+      min-height: 100vh;
+    }
+
+    /* ─── HEADER ─── */
+    header {
+      background: var(--navy);
+      padding: 24px 40px 0;
+      position: relative;
+    }
+    header::after {
+      content: '';
+      display: block;
+      height: 4px;
+      background: var(--teal);
+      margin-top: 20px;
+    }
+    .header-inner {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .brand {
+      font-family: 'Playfair Display', serif;
+      color: var(--teal);
+      font-size: 14px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      color: var(--white);
+      font-size: 28px;
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
+    header p {
+      color: var(--gray-light);
+      font-size: 13px;
+      padding-bottom: 20px;
+    }
+
+    /* ─── MAIN ─── */
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 32px 40px;
+    }
+
+    /* ─── STEPS ─── */
+    .step {
+      background: var(--white);
+      border-radius: 8px;
+      padding: 28px 32px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 8px rgba(27,42,74,0.06);
+    }
+    .step-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+    .step-num {
+      background: var(--navy);
+      color: var(--teal);
+      font-family: 'Lato', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .step h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--navy);
+    }
+    .step p.desc {
+      font-size: 13px;
+      color: var(--gray-light);
+      margin-top: 2px;
+    }
+
+    /* ─── COSTOS FIJOS ─── */
+    .input-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .input-row label {
+      font-size: 13px;
+      color: var(--gray-text);
+      width: 200px;
+      flex-shrink: 0;
+    }
+    .input-row input {
+      border: 1.5px solid #DDDDDD;
+      border-radius: 6px;
+      padding: 8px 12px;
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      color: var(--gray-text);
+      width: 160px;
+      transition: border-color 0.2s;
+    }
+    .input-row input:focus {
+      outline: none;
+      border-color: var(--teal);
+    }
+    .input-row .unit {
+      font-size: 12px;
+      color: var(--gray-light);
+    }
+
+    .total-fijos {
+      background: var(--navy);
+      color: var(--white);
+      border-radius: 6px;
+      padding: 12px 18px;
+      font-size: 14px;
+      margin-top: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .total-fijos span:last-child {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      color: var(--teal);
+    }
+
+    /* ─── SERVICIOS ─── */
+    .servicios-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .servicio-card {
+      border: 1.5px solid #EEEEEE;
+      border-radius: 8px;
+      padding: 18px 20px;
+      position: relative;
+      background: var(--gray-bg);
+    }
+    .servicio-card .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+    .servicio-card .card-num {
+      font-family: 'Lato', sans-serif;
+      font-size: 11px;
+      color: var(--teal);
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+    .btn-remove {
+      background: none;
+      border: none;
+      color: var(--gray-light);
+      cursor: pointer;
+      font-size: 18px;
+      line-height: 1;
+      padding: 0 4px;
+      transition: color 0.2s;
+    }
+    .btn-remove:hover { color: var(--coral); }
+
+    .card-fields {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px;
+    }
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .field-group label {
+      font-size: 11px;
+      color: var(--gray-light);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .field-group input, .field-group select {
+      border: 1.5px solid #DDDDDD;
+      border-radius: 6px;
+      padding: 8px 10px;
+      font-family: 'Lato', sans-serif;
+      font-size: 13px;
+      color: var(--gray-text);
+      background: var(--white);
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+    .field-group input:focus, .field-group select:focus {
+      outline: none;
+      border-color: var(--teal);
+    }
+    .field-group.currency {
+      position: relative;
+    }
+    .field-group.currency::before {
+      content: '$';
+      position: absolute;
+      left: 10px;
+      bottom: 9px;
+      font-size: 13px;
+      color: var(--gray-light);
+      pointer-events: none;
+      z-index: 1;
+    }
+    .field-group.currency input {
+      padding-left: 22px;
+    }
+
+    .field-group.full { grid-column: 1 / -1; }
+
+    .btn-add {
+      background: none;
+      border: 2px dashed var(--teal);
+      border-radius: 8px;
+      color: var(--teal);
+      font-family: 'Lato', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 12px;
+      width: 100%;
+      cursor: pointer;
+      transition: background 0.2s;
+      margin-top: 4px;
+    }
+    .btn-add:hover { background: var(--teal-light); }
+
+    /* ─── BOTÓN CALCULAR ─── */
+    .btn-calcular {
+      background: var(--navy);
+      color: var(--white);
+      border: none;
+      border-radius: 8px;
+      font-family: 'Playfair Display', serif;
+      font-size: 16px;
+      padding: 16px 40px;
+      cursor: pointer;
+      width: 100%;
+      transition: background 0.2s;
+      margin-top: 8px;
+    }
+    .btn-calcular:hover { background: var(--teal); }
+
+    /* ─── RESULTADOS ─── */
+    #resultados { display: none; }
+
+    .resultado-header {
+      background: var(--navy);
+      border-radius: 8px 8px 0 0;
+      padding: 20px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .resultado-header h3 {
+      font-family: 'Playfair Display', serif;
+      color: var(--white);
+      font-size: 18px;
+      font-weight: 500;
+    }
+    .resultado-header span {
+      color: var(--teal);
+      font-size: 12px;
+    }
+
+    .acento-bar {
+      height: 4px;
+      background: var(--teal);
+    }
+
+    /* ─── MATRIZ ─── */
+    .matriz-wrapper {
+      background: var(--white);
+      border-radius: 0 0 8px 8px;
+      padding: 32px;
+      box-shadow: 0 2px 8px rgba(27,42,74,0.06);
+    }
+
+    .matriz-container {
+      position: relative;
+      display: flex;
+      gap: 12px;
+    }
+
+    .eje-y-label {
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      font-size: 11px;
+      color: var(--gray-light);
+      text-align: center;
+      width: 16px;
+      flex-shrink: 0;
+    }
+
+    .matriz-inner {
+      flex: 1;
+    }
+
+    .eje-y-ticks {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      margin-bottom: 4px;
+      padding-right: 8px;
+    }
+
+    .matriz-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 4px;
+      height: 380px;
+      margin-bottom: 4px;
+    }
+
+    .cuadrante {
+      border-radius: 6px;
+      padding: 14px;
+      position: relative;
+      overflow: hidden;
+    }
+    .cuadrante.tl { background: linear-gradient(135deg, rgba(42,157,143,0.12), rgba(184,122,16,0.08)); }
+    .cuadrante.tr { background: linear-gradient(135deg, rgba(26,107,74,0.18), rgba(42,157,143,0.12)); }
+    .cuadrante.bl { background: linear-gradient(135deg, rgba(153,61,30,0.18), rgba(122,26,10,0.22)); }
+    .cuadrante.br { background: linear-gradient(135deg, rgba(184,122,16,0.10), rgba(153,61,30,0.16)); }
+
+    .cuadrante-label {
+      font-family: 'Playfair Display', serif;
+      font-size: 12px;
+      font-weight: 500;
+      margin-bottom: 2px;
+    }
+    .cuadrante-sub {
+      font-size: 10px;
+      opacity: 0.7;
+      margin-bottom: 8px;
+    }
+    .cuadrante-accion {
+      font-size: 10px;
+      font-style: italic;
+      opacity: 0.6;
+    }
+    .cuadrante.tr .cuadrante-label { color: #1a6b4a; }
+    .cuadrante.tl .cuadrante-label { color: #2A6B5A; }
+    .cuadrante.br .cuadrante-label { color: #7A4A10; }
+    .cuadrante.bl .cuadrante-label { color: var(--coral); }
+
+    /* Puntos en la matriz */
+    .puntos-overlay {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+    }
+
+    .punto {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      pointer-events: all;
+    }
+    .punto-circulo {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 9px;
+      font-weight: 700;
+      color: var(--white);
+      cursor: pointer;
+      transition: transform 0.2s;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      text-align: center;
+      line-height: 1.2;
+    }
+    .punto-circulo:hover { transform: scale(1.1); }
+    .punto-label {
+      font-size: 9px;
+      color: var(--gray-text);
+      text-align: center;
+      margin-top: 2px;
+      white-space: nowrap;
+      max-width: 60px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .eje-x-label {
+      text-align: center;
+      font-size: 11px;
+      color: var(--gray-light);
+      margin-top: 8px;
+    }
+
+    /* ─── TABLA DE RESULTADOS ─── */
+    .tabla-resultados {
+      margin-top: 24px;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 1px 4px rgba(27,42,74,0.08);
+    }
+    .tabla-resultados table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .tabla-resultados th {
+      background: var(--navy);
+      color: var(--white);
+      font-family: 'Lato', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      padding: 10px 14px;
+      text-align: left;
+    }
+    .tabla-resultados td {
+      padding: 10px 14px;
+      font-size: 13px;
+      border-bottom: 1px solid #EEEEEE;
+      background: var(--white);
+    }
+    .tabla-resultados tr:last-child td { border-bottom: none; }
+    .tabla-resultados tr:nth-child(even) td { background: var(--gray-bg); }
+
+    .badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+    .badge-green { background: rgba(42,157,143,0.15); color: #1a6b4a; }
+    .badge-amber { background: rgba(184,122,16,0.15); color: #7A4A10; }
+    .badge-coral { background: rgba(153,61,30,0.15); color: var(--coral); }
+    .badge-teal  { background: rgba(42,157,143,0.15); color: var(--teal); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      text-align: center;
+      padding: 24px 40px;
+      font-size: 11px;
+      color: var(--gray-light);
+    }
+    footer strong { color: var(--teal); }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 600px) {
+      main { padding: 20px 16px; }
+      header { padding: 20px 16px 0; }
+      .card-fields { grid-template-columns: 1fr; }
+      .input-row { flex-wrap: wrap; }
+      .matriz-grid { height: 300px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="brand">MTM Consulting</div>
+    <h1>Radiografía de Rentabilidad</h1>
+    <p>Cargá tus servicios o productos y descubrí cuáles vale la pena potenciar.</p>
+  </div>
+</header>
+
+<main>
+
+  <!-- PASO 1: PRODUCTOS Y SERVICIOS -->
+  <div class="step">
+    <div class="step-header">
+      <div class="step-num">01</div>
+      <div>
+        <h2>Productos o servicios</h2>
+        <p class="desc">Cargá cada uno con su precio, costo variable y volumen de ventas.</p>
+      </div>
+    </div>
+
+    <div class="servicios-list" id="serviciosList"><div class="servicio-card" id="servicio-1">
+      <div class="card-header">
+        <span class="card-num">PRODUCTO O SERVICIO 1</span>
+        <button class="btn-remove" onclick="eliminarServicio(1)">×</button>
+      </div>
+      <div class="card-fields">
+        <div class="field-group full">
+          <label>Nombre</label>
+          <input type="text" id="nombre-1" placeholder="Ej: Corte de cabello, diseño de logo, etc.">
+        </div>
+        <div class="field-group currency">
+          <label>Precio de venta ($)</label>
+          <input type="number" id="precio-1" placeholder="0" min="0" onfocus="this.type=&#39;number&#39;" onblur="this.type=&#39;number&#39;">
+        </div>
+        <div class="field-group currency">
+          <label>Costo variable por unidad ($)</label>
+          <input type="number" id="costo-1" placeholder="0" min="0">
+        </div>
+        <div class="field-group">
+          <label>Ventas por período</label>
+          <input type="number" id="ventas-1" placeholder="0" min="0">
+        </div>
+        <div class="field-group full">
+          <label>Frecuencia de ventas</label>
+          <select id="freq-1">
+            <option value="1">por mes</option>
+            <option value="0.25">por semana</option>
+            <option value="0.033">por día</option>
+            <option value="0.083">por quincena</option>
+            <option value="12">por año</option>
+          </select>
+        </div>
+      </div>
+    </div></div>
+    <button class="btn-add" onclick="agregarServicio()">+ Agregar producto o servicio</button>
+  </div>
+
+  <!-- PASO 2: COSTOS FIJOS -->
+  <div class="step">
+    <div class="step-header">
+      <div class="step-num">02</div>
+      <div>
+        <h2>Costos fijos</h2>
+        <p class="desc">Los gastos que tenés independientemente de cuánto vendas.</p>
+      </div>
+    </div>
+
+    <div id="costosFijosList"><div class="servicio-card" id="cf-row-1">
+      <div class="card-header">
+        <span class="card-num">COSTO FIJO 1</span>
+        <button class="btn-remove" onclick="eliminarCostoFijo(&#39;cf-row-1&#39;)" style="background:none;border:none;color:#AAA;font-size:20px;cursor:pointer;padding:0 4px;line-height:1;" onmouseover="this.style.color=&#39;#993D1E&#39;" onmouseout="this.style.color=&#39;#AAA&#39;">×</button>
+      </div>
+      <div class="card-fields">
+        <div class="field-group full">
+          <label>Descripción</label>
+          <input type="text" class="cf-nombre" placeholder="Ej: Alquiler, sueldo, servicios, etc.">
+        </div>
+        <div class="field-group currency">
+          <label>Monto ($)</label>
+          <input type="number" class="cf-monto" placeholder="0" min="0" oninput="actualizarTotalFijos()">
+        </div>
+        <div class="field-group">
+          <label>Frecuencia</label>
+          <select class="cf-freq" onchange="actualizarTotalFijos()">
+            <option value="1">por mes</option>
+            <option value="0.25">por semana</option>
+            <option value="0.033">por día</option>
+            <option value="0.083">por quincena</option>
+            <option value="12">por año</option>
+          </select>
+        </div>
+      </div>
+    </div></div>
+    <button class="btn-add" onclick="agregarCostoFijo()" style="margin-bottom:16px;">+ Agregar costo fijo</button>
+
+    <div class="total-fijos">
+      <span>Total costos fijos mensuales</span>
+      <span id="totalFijosDisplay">$0</span>
+    </div>
+  </div>
+
+  <!-- CALCULAR -->
+  <button class="btn-calcular" onclick="calcular()">Generar mi Radiografía de Rentabilidad</button>
+
+  <!-- RESULTADOS -->
+  <div id="resultados">
+    <div style="margin-top:32px;">
+      <div class="resultado-header">
+        <h3>Tu Radiografía de Rentabilidad</h3>
+        <span>MTM Consulting</span>
+      </div>
+      <div class="acento-bar"></div>
+      <div class="matriz-wrapper">
+
+        <div class="matriz-container">
+          <div class="eje-y-label">Margen de contribución por unidad</div>
+          <div class="matriz-inner">
+            <div class="matriz-grid" id="matrizGrid">
+              <!-- Cuadrante TL: Bajo volumen, Alto margen -->
+              <div class="cuadrante tl" id="cuadranteTL">
+                <div class="cuadrante-label">Potencial</div>
+                <div class="cuadrante-sub">Bajo volumen · Alto margen</div>
+                <div class="cuadrante-accion">Desarrollar la demanda</div>
+              </div>
+              <!-- Cuadrante TR: Alto volumen, Alto margen -->
+              <div class="cuadrante tr" id="cuadranteTR">
+                <div class="cuadrante-label">Servicios ancla</div>
+                <div class="cuadrante-sub">Alto volumen · Alto margen</div>
+                <div class="cuadrante-accion">Proteger y desarrollar</div>
+              </div>
+              <!-- Cuadrante BL: Bajo volumen, Bajo margen -->
+              <div class="cuadrante bl" id="cuadranteBL">
+                <div class="cuadrante-label">Revisar o eliminar</div>
+                <div class="cuadrante-sub">Bajo volumen · Bajo margen</div>
+                <div class="cuadrante-accion">No aportan al negocio</div>
+              </div>
+              <!-- Cuadrante BR: Alto volumen, Bajo margen -->
+              <div class="cuadrante br" id="cuadranteBR">
+                <div class="cuadrante-label">Generadores de caja</div>
+                <div class="cuadrante-sub">Alto volumen · Bajo margen</div>
+                <div class="cuadrante-accion">Revisar precio o costo</div>
+              </div>
+            </div>
+            <div class="eje-x-label">Volumen de ventas por mes →</div>
+          </div>
+        </div>
+
+        <!-- TABLA -->
+        <div class="tabla-resultados" id="tablaResultados"></div>
+
+        <!-- PUNTO DE EQUILIBRIO -->
+        <div id="peSection" style="display:none; margin-top:24px;">
+          <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px;">
+            <div style="width:4px; height:24px; background:var(--teal); border-radius:2px;"></div>
+            <h4 style="font-family:&#39;Playfair Display&#39;,serif; font-size:16px; color:var(--navy); font-weight:500;">Punto de equilibrio</h4>
+          </div>
+          <div id="peContent"></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <strong>MTM Consulting</strong> · Lee tu negocio · Todos los derechos reservados 2026
+</footer>
+
+<script>
+  let servicioCount = 0;
+  let totalFijos = 0;
+
+  // ─── COSTOS FIJOS ───
+  let cfCount = 0;
+
+  function crearFilaCF(placeholder) {
+    cfCount++;
+    const rowId = 'cf-row-' + cfCount;
+    const list = document.getElementById('costosFijosList');
+    const num = list.querySelectorAll('.servicio-card').length + 1;
+
+    const card = document.createElement('div');
+    card.className = 'servicio-card';
+    card.id = rowId;
+    card.innerHTML = `
+      <div class="card-header">
+        <span class="card-num">COSTO FIJO ${cfCount}</span>
+        <button class="btn-remove" onclick="eliminarCostoFijo('${rowId}')"
+          style="background:none;border:none;color:#AAA;font-size:20px;cursor:pointer;padding:0 4px;line-height:1;"
+          onmouseover="this.style.color='#993D1E'" onmouseout="this.style.color='#AAA'">×</button>
+      </div>
+      <div class="card-fields">
+        <div class="field-group full">
+          <label>Descripción</label>
+          <input type="text" class="cf-nombre" placeholder="Ej: Alquiler, sueldo, servicios, etc.">
+        </div>
+        <div class="field-group currency">
+          <label>Monto ($)</label>
+          <input type="number" class="cf-monto" placeholder="0" min="0" oninput="actualizarTotalFijos()">
+        </div>
+        <div class="field-group">
+          <label>Frecuencia</label>
+          <select class="cf-freq" onchange="actualizarTotalFijos()">
+            <option value="1">por mes</option>
+            <option value="0.25">por semana</option>
+            <option value="0.033">por día</option>
+            <option value="0.083">por quincena</option>
+            <option value="12">por año</option>
+          </select>
+        </div>
+      </div>
+    `;
+    list.appendChild(card);
+  }
+
+  function agregarCostoFijo() {
+    crearFilaCF('Ej: Alquiler, sueldo...');
+  }
+
+  function eliminarCostoFijo(rowId) {
+    const rows = document.querySelectorAll('#costosFijosList .servicio-card');
+    if (rows.length <= 1) return;
+    const el = document.getElementById(rowId);
+    if (el) { el.remove(); actualizarTotalFijos(); }
+  }
+
+  function actualizarTotalFijos() {
+    totalFijos = 0;
+    document.querySelectorAll('#costosFijosList .servicio-card').forEach(card => {
+      const monto = parseFloat(card.querySelector('.cf-monto')?.value) || 0;
+      const freq  = parseFloat(card.querySelector('.cf-freq')?.value) || 1;
+      totalFijos += monto * freq;
+    });
+    document.getElementById('totalFijosDisplay').textContent = '$' + formatNum(totalFijos);
+  }
+
+  function formatNum(n) {
+    return Math.round(n).toLocaleString('es-AR');
+  }
+
+  // ─── AGREGAR SERVICIO ───
+  function agregarServicio() {
+    servicioCount++;
+    const id = servicioCount;
+    const list = document.getElementById('serviciosList');
+    const num = list.querySelectorAll('.servicio-card').length + 1;
+
+    const card = document.createElement('div');
+    card.className = 'servicio-card';
+    card.id = 'servicio-' + id;
+    card.innerHTML = `
+      <div class="card-header">
+        <span class="card-num">PRODUCTO O SERVICIO ${num}</span>
+        <button class="btn-remove" onclick="eliminarServicio(${id})">×</button>
+      </div>
+      <div class="card-fields">
+        <div class="field-group full">
+          <label>Nombre</label>
+          <input type="text" id="nombre-${id}" placeholder="Ej: Corte de cabello, diseño de logo, etc.">
+        </div>
+        <div class="field-group currency">
+          <label>Precio de venta ($)</label>
+          <input type="number" id="precio-${id}" placeholder="0" min="0"
+            onfocus="this.type='number'" onblur="this.type='number'">
+        </div>
+        <div class="field-group currency">
+          <label>Costo variable por unidad ($)</label>
+          <input type="number" id="costo-${id}" placeholder="0" min="0">
+        </div>
+        <div class="field-group">
+          <label>Ventas por período</label>
+          <input type="number" id="ventas-${id}" placeholder="0" min="0">
+        </div>
+        <div class="field-group full">
+          <label>Frecuencia de ventas</label>
+          <select id="freq-${id}">
+            <option value="1">por mes</option>
+            <option value="0.25">por semana</option>
+            <option value="0.033">por día</option>
+            <option value="0.083">por quincena</option>
+            <option value="12">por año</option>
+          </select>
+        </div>
+      </div>
+    `;
+    list.appendChild(card);
+  }
+
+  function eliminarServicio(id) {
+    const el = document.getElementById('servicio-' + id);
+    if (el) el.remove();
+  }
+
+  // ─── CALCULAR ───
+  function calcular() {
+    const cards = document.querySelectorAll('#serviciosList .servicio-card');
+    if (cards.length === 0) {
+      alert('Por favor agregá al menos un producto o servicio.');
+      return;
+    }
+
+    let servicios = [];
+    let valido = true;
+
+    cards.forEach(card => {
+      const id = card.id.replace('servicio-', '');
+      const nombre = document.getElementById('nombre-' + id)?.value || 'Sin nombre';
+      const precio = parseFloat(document.getElementById('precio-' + id)?.value) || 0;
+      const costo  = parseFloat(document.getElementById('costo-' + id)?.value) || 0;
+      const ventasPeriodo = parseFloat(document.getElementById('ventas-' + id)?.value) || 0;
+      const freq   = parseFloat(document.getElementById('freq-' + id)?.value) || 1;
+
+      if (!precio || precio <= 0) { valido = false; return; }
+
+      const ventasMes = freq < 1 ? ventasPeriodo / freq : ventasPeriodo * freq;
+      const margen = precio - costo;
+      const margenPorc = precio > 0 ? (margen / precio) * 100 : 0;
+
+      servicios.push({ nombre, precio, costo, margen, margenPorc, ventasMes });
+    });
+
+    if (!valido) {
+      alert('Revisá que todos los productos o servicios tengan un precio de venta mayor a cero.');
+      return;
+    }
+
+    const margenes  = servicios.map(s => s.margen).sort((a,b) => a-b);
+    const volumenes = servicios.map(s => s.ventasMes).sort((a,b) => a-b);
+    const medMargen  = mediana(margenes);
+    const medVolumen = mediana(volumenes);
+
+    dibujarMatriz(servicios, medMargen, medVolumen);
+    dibujarTabla(servicios, medMargen, medVolumen);
+    dibujarPuntoEquilibrio(servicios);
+
+    document.getElementById('resultados').style.display = 'block';
+    document.getElementById('resultados').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  function mediana(arr) {
+    if (arr.length === 0) return 0;
+    const mid = Math.floor(arr.length / 2);
+    return arr.length % 2 !== 0 ? arr[mid] : (arr[mid-1] + arr[mid]) / 2;
+  }
+
+  // ─── DIBUJAR MATRIZ — posicionamiento por cuadrante correcto ───
+  function dibujarMatriz(servicios, medMargen, medVolumen) {
+    const colores = { tr: '#1a6b4a', tl: '#2A9D8F', br: '#B87A10', bl: '#993D1E' };
+    const grid = document.getElementById('matrizGrid');
+    grid.querySelectorAll('.punto').forEach(p => p.remove());
+    grid.style.position = 'relative';
+
+    // Agrupar por cuadrante
+    const grupos = { tr: [], tl: [], br: [], bl: [] };
+    servicios.forEach(s => {
+      const altoM = s.margen >= medMargen;
+      const altoV = s.ventasMes >= medVolumen;
+      if (altoM && altoV)   grupos.tr.push(s);
+      else if (altoM)       grupos.tl.push(s);
+      else if (altoV)       grupos.br.push(s);
+      else                  grupos.bl.push(s);
+    });
+
+    // Para cada cuadrante, distribuir los puntos en su mitad del grid
+    // Grid: x 0-100%, y 0-100% (arriba izquierda = 0,0)
+    // Cuadrantes: tl=izq-arriba, tr=der-arriba, bl=izq-abajo, br=der-abajo
+    const cuadrantePct = {
+      tl: { xMin: 5,  xMax: 48, yMin: 5,  yMax: 48 },
+      tr: { xMin: 52, xMax: 95, yMin: 5,  yMax: 48 },
+      bl: { xMin: 5,  xMax: 48, yMin: 52, yMax: 95 },
+      br: { xMin: 52, xMax: 95, yMin: 52, yMax: 95 },
+    };
+
+    Object.entries(grupos).forEach(([key, items]) => {
+      if (items.length === 0) return;
+      const color = colores[key];
+      const rango = cuadrantePct[key];
+
+      items.forEach((s, i) => {
+        // Distribuir en grilla dentro del cuadrante para evitar solapamiento
+        const cols = Math.ceil(Math.sqrt(items.length));
+        const rows = Math.ceil(items.length / cols);
+        const col = i % cols;
+        const row = Math.floor(i / cols);
+
+        // Dividir el cuadrante en celdas iguales con padding
+        const pad = 12;
+        const cellW = (rango.xMax - rango.xMin - pad * 2) / cols;
+        const cellH = (rango.yMax - rango.yMin - pad * 2) / rows;
+        const xPct = rango.xMin + pad + cellW * col + cellW / 2;
+        const yPct = rango.yMin + pad + cellH * row + cellH / 2;
+
+        const punto = document.createElement('div');
+        punto.className = 'punto';
+        punto.style.cssText = `position:absolute; left:${xPct}%; top:${yPct}%; transform:translate(-50%,-50%); z-index:10; text-align:center;`;
+        punto.innerHTML = `
+          <div style="background:${color}; width:18px; height:18px; border-radius:50%; margin:0 auto; box-shadow:0 2px 6px rgba(0,0,0,0.25);" title="${s.nombre}"></div>
+          <div style="font-size:9px; color:#333; margin-top:4px; white-space:nowrap; max-width:80px; overflow:hidden; text-overflow:ellipsis; font-weight:600;">${s.nombre}</div>
+        `;
+        grid.appendChild(punto);
+      });
+    });
+  }
+
+  // ─── DIBUJAR TABLA ───
+  function dibujarTabla(servicios, medMargen, medVolumen) {
+    const etiqueta = (s) => {
+      const altoM = s.margen >= medMargen;
+      const altoV = s.ventasMes >= medVolumen;
+      if (altoM && altoV)  return { texto: 'Servicio ancla',     clase: 'badge-green' };
+      if (altoM && !altoV) return { texto: 'Potencial',          clase: 'badge-teal'  };
+      if (!altoM && altoV) return { texto: 'Generador de caja',  clase: 'badge-amber' };
+      return                      { texto: 'Revisar o eliminar', clase: 'badge-coral' };
+    };
+
+    let html = `
+      <table>
+        <thead>
+          <tr>
+            <th>Producto / Servicio</th>
+            <th>Precio</th>
+            <th>Margen $</th>
+            <th>Margen %</th>
+            <th>Ventas/mes</th>
+            <th>Clasificación</th>
+          </tr>
+        </thead>
+        <tbody>
+    `;
+
+    servicios.forEach(s => {
+      const { texto, clase } = etiqueta(s);
+      html += `
+        <tr>
+          <td><strong>${s.nombre}</strong></td>
+          <td>$${formatNum(s.precio)}</td>
+          <td>$${formatNum(s.margen)}</td>
+          <td>${s.margenPorc.toFixed(1)}%</td>
+          <td>${Math.round(s.ventasMes)}</td>
+          <td><span class="badge ${clase}">${texto}</span></td>
+        </tr>
+      `;
+    });
+
+    html += '</tbody></table>';
+    document.getElementById('tablaResultados').innerHTML = html;
+  }
+
+  // ─── PUNTO DE EQUILIBRIO ───
+  function dibujarPuntoEquilibrio(servicios) {
+    if (totalFijos === 0) {
+      document.getElementById('peSection').style.display = 'none';
+      return;
+    }
+
+    const totalVentas = servicios.reduce((sum, s) => sum + s.ventasMes, 0);
+    const margenPonderado = totalVentas > 0
+      ? servicios.reduce((sum, s) => sum + s.margen * (s.ventasMes / totalVentas), 0)
+      : servicios.reduce((sum, s) => sum + s.margen, 0) / servicios.length;
+
+    const peTotal = margenPonderado > 0 ? Math.ceil(totalFijos / margenPonderado) : null;
+
+    let html = '';
+    if (peTotal !== null) {
+      const superando = totalVentas >= peTotal;
+      const diferencia = Math.ceil(Math.abs(totalVentas - peTotal));
+      const totalVentasInt = Math.round(totalVentas);
+
+      // PE por servicio — prorrateo por participación en ventas totales
+      let pePorServicio = '';
+      if (servicios.length > 1) {
+        pePorServicio = `
+          <div style="margin-top:20px;">
+            <div style="font-size:11px; color:#888; text-transform:uppercase; letter-spacing:1px; margin-bottom:10px;">Punto de equilibrio por producto o servicio</div>
+            <table style="width:100%; border-collapse:collapse; font-size:13px;">
+              <thead>
+                <tr>
+                  <th style="background:#1B2A4A; color:#fff; padding:8px 12px; text-align:left; font-size:11px; font-weight:700;">Producto / Servicio</th>
+                  <th style="background:#1B2A4A; color:#fff; padding:8px 12px; text-align:center; font-size:11px; font-weight:700;">PE individual</th>
+                  <th style="background:#1B2A4A; color:#fff; padding:8px 12px; text-align:center; font-size:11px; font-weight:700;">Ventas actuales</th>
+                  <th style="background:#1B2A4A; color:#fff; padding:8px 12px; text-align:center; font-size:11px; font-weight:700;">Estado</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${servicios.map((s, i) => {
+                  const participacion = totalVentas > 0 ? s.ventasMes / totalVentas : 1 / servicios.length;
+                  const cfAsignados = totalFijos * participacion;
+                  const peS = s.margen > 0 ? Math.ceil(cfAsignados / s.margen) : null;
+                  const ventasS = Math.round(s.ventasMes);
+                  const ok = peS !== null && ventasS >= peS;
+                  const bg = i % 2 === 0 ? '#fff' : '#F5F5F5';
+                  return `
+                    <tr style="background:${bg}">
+                      <td style="padding:8px 12px; border-bottom:1px solid #EEE;"><strong>${s.nombre}</strong></td>
+                      <td style="padding:8px 12px; border-bottom:1px solid #EEE; text-align:center;">${peS !== null ? peS + ' u.' : '—'}</td>
+                      <td style="padding:8px 12px; border-bottom:1px solid #EEE; text-align:center;">${ventasS} u.</td>
+                      <td style="padding:8px 12px; border-bottom:1px solid #EEE; text-align:center;">
+                        <span style="display:inline-block; padding:3px 10px; border-radius:20px; font-size:11px; font-weight:700; background:${ok ? 'rgba(42,157,143,0.15)' : 'rgba(153,61,30,0.15)'}; color:${ok ? '#1a6b4a' : '#993D1E'};">
+                          ${ok ? '✓ Cubierto' : '⚠ Sin cubrir'}
+                        </span>
+                      </td>
+                    </tr>
+                  `;
+                }).join('')}
+              </tbody>
+            </table>
+          </div>
+        `;
+      }
+
+      html = `
+        <div style="display:flex; gap:20px; flex-wrap:wrap; align-items:stretch; margin-bottom:4px;">
+          <div style="flex:1; min-width:160px; background:${superando ? 'rgba(42,157,143,0.08)' : 'rgba(153,61,30,0.08)'}; border:1.5px solid ${superando ? '#2A9D8F' : '#993D1E'}; border-radius:8px; padding:20px; text-align:center;">
+            <div style="font-size:11px; color:#888; text-transform:uppercase; letter-spacing:1px; margin-bottom:8px;">PE total</div>
+            <div style="font-family:'Playfair Display',serif; font-size:32px; font-weight:500; color:${superando ? '#1a6b4a' : '#993D1E'};">${peTotal}</div>
+            <div style="font-size:12px; color:#666; margin-top:4px;">unidades / mes</div>
+          </div>
+          <div style="flex:1; min-width:160px; background:#F5F5F5; border:1.5px solid #E0E0E0; border-radius:8px; padding:20px; text-align:center;">
+            <div style="font-size:11px; color:#888; text-transform:uppercase; letter-spacing:1px; margin-bottom:8px;">Ventas actuales</div>
+            <div style="font-family:'Playfair Display',serif; font-size:32px; font-weight:500; color:#1B2A4A;">${totalVentasInt}</div>
+            <div style="font-size:12px; color:#666; margin-top:4px;">unidades / mes</div>
+          </div>
+          <div style="flex:2; min-width:200px; background:#F5F5F5; border:1.5px solid #E0E0E0; border-radius:8px; padding:20px; display:flex; align-items:center;">
+            <div>
+              <div style="font-size:13px; font-weight:700; color:${superando ? '#1a6b4a' : '#993D1E'}; margin-bottom:6px;">
+                ${superando ? '✓ Superando el punto de equilibrio' : '⚠ Por debajo del punto de equilibrio'}
+              </div>
+              <div style="font-size:13px; color:#444; line-height:1.5;">
+                ${superando
+                  ? `Vendés <strong>${diferencia} unidades más</strong> de las necesarias. Cada unidad adicional genera $${formatNum(margenPonderado)} de ganancia neta.`
+                  : `Necesitás <strong>${diferencia} unidades más</strong> por mes para cubrir todos tus costos fijos.`
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+        ${pePorServicio}
+      `;
+    } else {
+      html = `<p style="color:#993D1E; font-size:13px;">No es posible calcular el punto de equilibrio: el margen de contribución es cero o negativo.</p>`;
+    }
+
+    document.getElementById('peContent').innerHTML = html;
+    document.getElementById('peSection').style.display = 'block';
+  }
+
+  // ─── FORMATO MONEDA EN INPUTS ───
+  function formatearInput(input) {
+    const valor = parseFloat(input.value);
+    if (!isNaN(valor) && valor > 0) {
+      input.setAttribute('data-raw', input.value);
+      input.setAttribute('data-formatted', '$' + formatNum(valor));
+    }
+  }
+
+  // Inicializar
+  crearFilaCF('Ej: Alquiler');
+  agregarServicio();
+</script>
+
+
+
+</body></html>
