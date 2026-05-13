@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<!-- saved from url=(0048)file:///C:/Users/Usuario/Downloads/index_10.html -->
-<html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Radiografía de Rentabilidad — MTM Consulting</title>
-  <link href="./Radiografía de Rentabilidad — MTM Consulting_files/css2" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --navy: #1B2A4A;
@@ -518,40 +518,7 @@
       </div>
     </div>
 
-    <div class="servicios-list" id="serviciosList"><div class="servicio-card" id="servicio-1">
-      <div class="card-header">
-        <span class="card-num">PRODUCTO O SERVICIO 1</span>
-        <button class="btn-remove" onclick="eliminarServicio(1)">×</button>
-      </div>
-      <div class="card-fields">
-        <div class="field-group full">
-          <label>Nombre</label>
-          <input type="text" id="nombre-1" placeholder="Ej: Corte de cabello, diseño de logo, etc.">
-        </div>
-        <div class="field-group currency">
-          <label>Precio de venta ($)</label>
-          <input type="number" id="precio-1" placeholder="0" min="0" onfocus="this.type=&#39;number&#39;" onblur="this.type=&#39;number&#39;">
-        </div>
-        <div class="field-group currency">
-          <label>Costo variable por unidad ($)</label>
-          <input type="number" id="costo-1" placeholder="0" min="0">
-        </div>
-        <div class="field-group">
-          <label>Ventas por período</label>
-          <input type="number" id="ventas-1" placeholder="0" min="0">
-        </div>
-        <div class="field-group full">
-          <label>Frecuencia de ventas</label>
-          <select id="freq-1">
-            <option value="1">por mes</option>
-            <option value="0.25">por semana</option>
-            <option value="0.033">por día</option>
-            <option value="0.083">por quincena</option>
-            <option value="12">por año</option>
-          </select>
-        </div>
-      </div>
-    </div></div>
+    <div class="servicios-list" id="serviciosList"></div>
     <button class="btn-add" onclick="agregarServicio()">+ Agregar producto o servicio</button>
   </div>
 
@@ -565,32 +532,7 @@
       </div>
     </div>
 
-    <div id="costosFijosList"><div class="servicio-card" id="cf-row-1">
-      <div class="card-header">
-        <span class="card-num">COSTO FIJO 1</span>
-        <button class="btn-remove" onclick="eliminarCostoFijo(&#39;cf-row-1&#39;)" style="background:none;border:none;color:#AAA;font-size:20px;cursor:pointer;padding:0 4px;line-height:1;" onmouseover="this.style.color=&#39;#993D1E&#39;" onmouseout="this.style.color=&#39;#AAA&#39;">×</button>
-      </div>
-      <div class="card-fields">
-        <div class="field-group full">
-          <label>Descripción</label>
-          <input type="text" class="cf-nombre" placeholder="Ej: Alquiler, sueldo, servicios, etc.">
-        </div>
-        <div class="field-group currency">
-          <label>Monto ($)</label>
-          <input type="number" class="cf-monto" placeholder="0" min="0" oninput="actualizarTotalFijos()">
-        </div>
-        <div class="field-group">
-          <label>Frecuencia</label>
-          <select class="cf-freq" onchange="actualizarTotalFijos()">
-            <option value="1">por mes</option>
-            <option value="0.25">por semana</option>
-            <option value="0.033">por día</option>
-            <option value="0.083">por quincena</option>
-            <option value="12">por año</option>
-          </select>
-        </div>
-      </div>
-    </div></div>
+    <div id="costosFijosList"></div>
     <button class="btn-add" onclick="agregarCostoFijo()" style="margin-bottom:16px;">+ Agregar costo fijo</button>
 
     <div class="total-fijos">
@@ -652,7 +594,7 @@
         <div id="peSection" style="display:none; margin-top:24px;">
           <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px;">
             <div style="width:4px; height:24px; background:var(--teal); border-radius:2px;"></div>
-            <h4 style="font-family:&#39;Playfair Display&#39;,serif; font-size:16px; color:var(--navy); font-weight:500;">Punto de equilibrio</h4>
+            <h4 style="font-family:'Playfair Display',serif; font-size:16px; color:var(--navy); font-weight:500;">Punto de equilibrio</h4>
           </div>
           <div id="peContent"></div>
         </div>
@@ -1059,6 +1001,5 @@
   agregarServicio();
 </script>
 
-
-
-</body></html>
+</body>
+</html>
