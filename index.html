@@ -235,20 +235,10 @@
     .field-group.currency {
       position: relative;
     }
-    .field-group.currency::before {
-      content: '$';
-      position: absolute;
-      left: 10px;
-      bottom: 9px;
-      font-size: 13px;
-      color: var(--gray-light);
-      pointer-events: none;
-      z-index: 1;
+    .field-group.currency input[data-mode="display"] {
+      color: var(--navy);
+      font-weight: 600;
     }
-    .field-group.currency input {
-      padding-left: 22px;
-    }
-
     .field-group.full { grid-column: 1 / -1; }
 
     .btn-add {
@@ -709,7 +699,9 @@
             <span class="tooltip-icon" onclick="toggleTooltip(this)">?</span>
             <span class="tooltip-box">Cuánto pagás por este gasto en el período que elegís. La herramienta lo convierte a mensual automáticamente.</span>
           </label>
-          <input type="number" class="cf-monto" placeholder="0" min="0" oninput="actualizarTotalFijos()">
+          <input type="number" class="cf-monto" placeholder="Ej: $8.000" min="0"
+            oninput="actualizarTotalFijos()"
+            onfocus="onFocusCurrency(this)" onblur="onBlurCurrency(this); actualizarTotalFijos()">
         </div>
         <div class="field-group">
           <label class="tooltip-wrap">Frecuencia
@@ -743,7 +735,8 @@
   function actualizarTotalFijos() {
     totalFijos = 0;
     document.querySelectorAll('#costosFijosList .servicio-card').forEach(card => {
-      const monto = parseFloat(card.querySelector('.cf-monto')?.value) || 0;
+      const input = card.querySelector('.cf-monto');
+      const monto = getRawValue(input);
       const freq  = parseFloat(card.querySelector('.cf-freq')?.value) || 1;
       totalFijos += monto * freq;
     });
@@ -782,21 +775,24 @@
             <span class="tooltip-icon" onclick="toggleTooltip(this)">?</span>
             <span class="tooltip-box">Lo que cobrás al cliente por cada unidad de este producto o servicio, antes de descontar cualquier costo.</span>
           </label>
-          <input type="number" id="precio-${id}" placeholder="0" min="0">
+          <input type="number" id="precio-${id}" placeholder="Ej: $500" min="0"
+            onfocus="onFocusCurrency(this)" onblur="onBlurCurrency(this)">
         </div>
         <div class="field-group currency">
           <label class="tooltip-wrap">Costo variable por unidad ($)
             <span class="tooltip-icon" onclick="toggleTooltip(this)">?</span>
             <span class="tooltip-box">Lo que te cuesta producir o entregar cada unidad: materiales, insumos, comisiones. Solo lo que varía según cuánto vendés, no los gastos fijos.</span>
           </label>
-          <input type="number" id="costo-${id}" placeholder="0" min="0">
+          <input type="number" id="costo-${id}" placeholder="Ej: $120" min="0"
+            onfocus="onFocusCurrency(this)" onblur="onBlurCurrency(this)">
         </div>
         <div class="field-group">
           <label class="tooltip-wrap">Ventas por período
             <span class="tooltip-icon" onclick="toggleTooltip(this)">?</span>
             <span class="tooltip-box">Cuántas unidades vendés en el período que elegís abajo. Si vendés 10 por semana, escribí 10 y seleccioná "por semana".</span>
           </label>
-          <input type="number" id="ventas-${id}" placeholder="0" min="0">
+          <input type="number" id="ventas-${id}" placeholder="Ej: 30" min="0"
+            onfocus="onFocusNumber(this)" onblur="onBlurNumber(this)">
         </div>
         <div class="field-group full">
           <label class="tooltip-wrap">Frecuencia de ventas
@@ -835,9 +831,9 @@
     cards.forEach(card => {
       const id = card.id.replace('servicio-', '');
       const nombre = document.getElementById('nombre-' + id)?.value || 'Sin nombre';
-      const precio = parseFloat(document.getElementById('precio-' + id)?.value) || 0;
-      const costo  = parseFloat(document.getElementById('costo-' + id)?.value) || 0;
-      const ventasPeriodo = parseFloat(document.getElementById('ventas-' + id)?.value) || 0;
+      const precio = getRawValue(document.getElementById('precio-' + id));
+      const costo  = getRawValue(document.getElementById('costo-' + id));
+      const ventasPeriodo = getRawValue(document.getElementById('ventas-' + id));
       const freq   = parseFloat(document.getElementById('freq-' + id)?.value) || 1;
 
       if (!precio || precio <= 0) { valido = false; return; }
@@ -979,7 +975,16 @@
   // ─── PUNTO DE EQUILIBRIO ───
   function dibujarPuntoEquilibrio(servicios) {
     if (totalFijos === 0) {
-      document.getElementById('peSection').style.display = 'none';
+      document.getElementById('peContent').innerHTML = `
+        <div style="background:#F5F5F5; border:1.5px solid #DDDDDD; border-radius:8px; padding:20px; display:flex; align-items:center; gap:14px;">
+          <div style="font-size:24px;">💡</div>
+          <div>
+            <div style="font-size:13px; font-weight:700; color:#444; margin-bottom:4px;">No cargaste costos fijos</div>
+            <div style="font-size:13px; color:#888; line-height:1.5;">Para calcular el punto de equilibrio necesitás cargar al menos un costo fijo en el paso 02. Son los gastos que tenés todos los meses independientemente de cuánto vendas: alquiler, sueldos, servicios, etc.</div>
+          </div>
+        </div>
+      `;
+      document.getElementById('peSection').style.display = 'block';
       return;
     }
 
@@ -1074,7 +1079,54 @@
     document.getElementById('peSection').style.display = 'block';
   }
 
-  // ─── TOOLTIPS MÓVIL ───
+  // ─── FORMATO MONEDA EN INPUTS ───
+  function onFocusNumber(input) {
+    const raw = input.getAttribute('data-raw') || '';
+    input.value = raw;
+    input.type = 'number';
+    input.removeAttribute('data-mode');
+  }
+
+  function onBlurNumber(input) {
+    const val = parseFloat(input.value);
+    if (!isNaN(val) && val > 0) {
+      input.setAttribute('data-raw', val);
+      input.type = 'text';
+      input.value = formatNum(val);
+      input.setAttribute('data-mode', 'display');
+    } else {
+      input.removeAttribute('data-raw');
+      input.removeAttribute('data-mode');
+      input.type = 'number';
+    }
+  }
+  function onFocusCurrency(input) {
+    // Al hacer foco, mostrar solo el número
+    const raw = input.getAttribute('data-raw') || '';
+    input.value = raw;
+    input.type = 'number';
+    input.removeAttribute('data-mode');
+  }
+
+  function onBlurCurrency(input) {
+    const val = parseFloat(input.value);
+    if (!isNaN(val) && val > 0) {
+      input.setAttribute('data-raw', val);
+      input.type = 'text';
+      input.value = '$' + formatNum(val);
+      input.setAttribute('data-mode', 'display');
+    } else {
+      input.removeAttribute('data-raw');
+      input.removeAttribute('data-mode');
+      input.type = 'number';
+    }
+  }
+
+  function getRawValue(input) {
+    const raw = input.getAttribute('data-raw');
+    if (raw) return parseFloat(raw);
+    return parseFloat(input.value) || 0;
+  }
   function toggleTooltip(icon) {
     const box = icon.nextElementSibling;
     const isVisible = box.classList.contains('visible');
