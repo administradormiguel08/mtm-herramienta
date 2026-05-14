@@ -439,11 +439,13 @@
     .tabla-resultados {
       margin-top: 24px;
       border-radius: 8px;
-      overflow: hidden;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
       box-shadow: 0 1px 4px rgba(27,42,74,0.08);
     }
     .tabla-resultados table {
       width: 100%;
+      min-width: 500px;
       border-collapse: collapse;
     }
     .tabla-resultados th {
@@ -477,6 +479,61 @@
     .badge-coral { background: rgba(153,61,30,0.15); color: var(--coral); }
     .badge-teal  { background: rgba(42,157,143,0.15); color: var(--teal); }
 
+    /* ─── TOOLTIPS ─── */
+    .tooltip-wrap {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .tooltip-icon {
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background: var(--gray-light);
+      color: white;
+      font-size: 9px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      flex-shrink: 0;
+      user-select: none;
+      transition: background 0.2s;
+    }
+    .tooltip-icon:hover, .tooltip-icon.active {
+      background: var(--teal);
+    }
+    .tooltip-box {
+      display: none;
+      position: absolute;
+      bottom: calc(100% + 8px);
+      left: 0;
+      background: var(--navy);
+      color: var(--white);
+      font-size: 11px;
+      line-height: 1.5;
+      padding: 10px 14px;
+      border-radius: 6px;
+      width: 220px;
+      z-index: 100;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      pointer-events: none;
+    }
+    .tooltip-box::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 14px;
+      border: 5px solid transparent;
+      border-top-color: var(--navy);
+    }
+    .tooltip-wrap:hover .tooltip-box,
+    .tooltip-wrap .tooltip-box.visible {
+      display: block;
+    }
+
     /* ─── FOOTER ─── */
     footer {
       text-align: center;
@@ -487,12 +544,19 @@
     footer strong { color: var(--teal); }
 
     /* ─── RESPONSIVE ─── */
-    @media (max-width: 600px) {
-      main { padding: 20px 16px; }
-      header { padding: 20px 16px 0; }
+    @media (max-width: 640px) {
+      main { padding: 16px 12px; }
+      header { padding: 16px 12px 0; }
+      header h1 { font-size: 22px; }
+      .step { padding: 20px 16px; }
       .card-fields { grid-template-columns: 1fr; }
+      .field-group.full { grid-column: 1; }
       .input-row { flex-wrap: wrap; }
-      .matriz-grid { height: 300px; }
+      .matriz-grid { height: 260px; }
+      .matriz-wrapper { padding: 16px; }
+      .btn-calcular { font-size: 14px; padding: 14px 20px; }
+      .resultado-header h3 { font-size: 15px; }
+      .tooltip-box { width: 180px; font-size: 10px; }
     }
   </style>
 </head>
@@ -634,15 +698,24 @@
       </div>
       <div class="card-fields">
         <div class="field-group full">
-          <label>Descripción</label>
+          <label class="tooltip-wrap">Descripción
+            <span class="tooltip-icon" onclick="toggleTooltip(this)">?</span>
+            <span class="tooltip-box">El nombre del gasto fijo. Ej: Alquiler del local, sueldo de empleada, servicio de internet, seguro, etc.</span>
+          </label>
           <input type="text" class="cf-nombre" placeholder="Ej: Alquiler, sueldo, servicios, etc.">
         </div>
         <div class="field-group currency">
-          <label>Monto ($)</label>
+          <label class="tooltip-wrap">Monto ($)
+            <span class="tooltip-icon" onclick="toggleTooltip(this)">?</span>
+            <span class="tooltip-box">Cuánto pagás por este gasto en el período que elegís. La herramienta lo convierte a mensual automáticamente.</span>
+          </label>
           <input type="number" class="cf-monto" placeholder="0" min="0" oninput="actualizarTotalFijos()">
         </div>
         <div class="field-group">
-          <label>Frecuencia</label>
+          <label class="tooltip-wrap">Frecuencia
+            <span class="tooltip-icon" onclick="toggleTooltip(this)">?</span>
+            <span class="tooltip-box">Con qué frecuencia pagás este gasto. El alquiler suele ser mensual, pero una cuota anual podés cargarla "por año" y la herramienta la prorratea.</span>
+          </label>
           <select class="cf-freq" onchange="actualizarTotalFijos()">
             <option value="1">por mes</option>
             <option value="0.25">por semana</option>
@@ -698,24 +771,38 @@
       </div>
       <div class="card-fields">
         <div class="field-group full">
-          <label>Nombre</label>
+          <label class="tooltip-wrap">Nombre
+            <span class="tooltip-icon" onclick="toggleTooltip(this)">?</span>
+            <span class="tooltip-box">El nombre del producto o servicio tal como lo ofrecés. Ej: Corte de cabello, Diseño de logo, Clase particular, etc.</span>
+          </label>
           <input type="text" id="nombre-${id}" placeholder="Ej: Corte de cabello, diseño de logo, etc.">
         </div>
         <div class="field-group currency">
-          <label>Precio de venta ($)</label>
-          <input type="number" id="precio-${id}" placeholder="0" min="0"
-            onfocus="this.type='number'" onblur="this.type='number'">
+          <label class="tooltip-wrap">Precio de venta ($)
+            <span class="tooltip-icon" onclick="toggleTooltip(this)">?</span>
+            <span class="tooltip-box">Lo que cobrás al cliente por cada unidad de este producto o servicio, antes de descontar cualquier costo.</span>
+          </label>
+          <input type="number" id="precio-${id}" placeholder="0" min="0">
         </div>
         <div class="field-group currency">
-          <label>Costo variable por unidad ($)</label>
+          <label class="tooltip-wrap">Costo variable por unidad ($)
+            <span class="tooltip-icon" onclick="toggleTooltip(this)">?</span>
+            <span class="tooltip-box">Lo que te cuesta producir o entregar cada unidad: materiales, insumos, comisiones. Solo lo que varía según cuánto vendés, no los gastos fijos.</span>
+          </label>
           <input type="number" id="costo-${id}" placeholder="0" min="0">
         </div>
         <div class="field-group">
-          <label>Ventas por período</label>
+          <label class="tooltip-wrap">Ventas por período
+            <span class="tooltip-icon" onclick="toggleTooltip(this)">?</span>
+            <span class="tooltip-box">Cuántas unidades vendés en el período que elegís abajo. Si vendés 10 por semana, escribí 10 y seleccioná "por semana".</span>
+          </label>
           <input type="number" id="ventas-${id}" placeholder="0" min="0">
         </div>
         <div class="field-group full">
-          <label>Frecuencia de ventas</label>
+          <label class="tooltip-wrap">Frecuencia de ventas
+            <span class="tooltip-icon" onclick="toggleTooltip(this)">?</span>
+            <span class="tooltip-box">Con qué frecuencia contás las ventas que ingresaste arriba. La herramienta convierte todo a mensual automáticamente.</span>
+          </label>
           <select id="freq-${id}">
             <option value="1">por mes</option>
             <option value="0.25">por semana</option>
@@ -987,14 +1074,26 @@
     document.getElementById('peSection').style.display = 'block';
   }
 
-  // ─── FORMATO MONEDA EN INPUTS ───
-  function formatearInput(input) {
-    const valor = parseFloat(input.value);
-    if (!isNaN(valor) && valor > 0) {
-      input.setAttribute('data-raw', input.value);
-      input.setAttribute('data-formatted', '$' + formatNum(valor));
+  // ─── TOOLTIPS MÓVIL ───
+  function toggleTooltip(icon) {
+    const box = icon.nextElementSibling;
+    const isVisible = box.classList.contains('visible');
+    // Cerrar todos los tooltips abiertos
+    document.querySelectorAll('.tooltip-box.visible').forEach(b => b.classList.remove('visible'));
+    document.querySelectorAll('.tooltip-icon.active').forEach(i => i.classList.remove('active'));
+    if (!isVisible) {
+      box.classList.add('visible');
+      icon.classList.add('active');
     }
   }
+
+  // Cerrar tooltips al tocar fuera
+  document.addEventListener('click', function(e) {
+    if (!e.target.classList.contains('tooltip-icon')) {
+      document.querySelectorAll('.tooltip-box.visible').forEach(b => b.classList.remove('visible'));
+      document.querySelectorAll('.tooltip-icon.active').forEach(i => i.classList.remove('active'));
+    }
+  });
 
   // Inicializar
   crearFilaCF('Ej: Alquiler');
